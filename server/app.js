@@ -25,7 +25,7 @@ const ticketRouter = require('./router/ticket');
 app.use('/api/tickets', ticketRouter);
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://mikeakinyemi41:Qc8ge1K3arIvmJW3@ticketdetails.fyphnwo.mongodb.net/')
+mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://mikeakinyemi41:Qc8ge1K3arIvmJW3@ticketdetails.fyphnwo.mongodb.net/?retryWrites=true&w=majority&appName=TicketDetails')
   .then(() => {
     console.log('MongoDB connected');
     const PORT = process.env.PORT || 3500;
