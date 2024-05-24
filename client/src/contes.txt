@@ -1,0 +1,171 @@
+// import React, {  useContext, useState, useEffect } from 'react';
+
+
+// export const TicketProvider = ({ children }) => {
+//     const [ticket, setTicket] = useState({
+//         name: '',
+//         img: null,
+//         day: '',
+//         month: '',
+//         time: '',
+//         venue: '',
+//         sits: [''],
+//         category: '',
+//     });
+
+//    
+
+//     const handleSubmit = (e) => {
+//         e.preventDefault();
+
+//         setEvents((prevEvents) => [...prevEvents, ticket]);
+
+//         setTicket({
+//             name: '',
+//             img: null,
+//             day: '',
+//             month: '',
+//             time: '',
+//             venue: '',
+//             sits: [''],
+//             category: '',
+//         });
+
+//         setSitsCount(1);
+
+//         localStorage.setItem('events', JSON.stringify([...events, ticket]));
+//     };
+
+//     const handleChange = (e) => {
+//         const { name, value, type, files } = e.target;
+//         if (type === 'file') {
+//             setTicket((prevTicket) => ({
+//                 ...prevTicket,
+//                 [name]: files[0],
+//             }));
+//         } else {
+//             setTicket((prevTicket) => ({
+//                 ...prevTicket,
+//                 [name]: value,
+//             }));
+//         }
+//     };
+
+    // const addSitField = () => {
+    //     setSitsCount((prevCount) => prevCount + 1);
+    //     setTicket((prevTicket) => ({
+    //         ...prevTicket,
+    //         sits: [...prevTicket.sits, ''],
+    //     }));
+//     };
+
+//     return (
+//         <TicketContext.Provider value={{ addSitField, ticket, events, sitsCount, handleSubmit, handleChange }}>
+//             {children}
+//         </TicketContext.Provider>
+//     );
+// };
+
+// export const useTicket = () => {
+//     return useContext(TicketContext);
+// };
+
+
+   <form className="py-10 px-5" onSubmit={handleSubmit}>
+            <div className="text-2xl py-3 px-2">
+                <label>Ticket Name</label>
+                <input
+                    type="text"
+                    className="border-4 border-azure-black"
+                    name="name"
+                    value={ticket.name}
+                    onChange={handleChange}
+                />
+            </div>
+
+            <div className="text-2xl py-3 px-2">
+                <label>Ticket Image</label>
+                <input
+                    type="url"
+                    className="border-4 border-azure-black"
+                    name="img"
+                    onChange={handleChange}
+                />
+            </div>
+
+            <div className="text-2xl py-3 px-2">
+                <label>Ticket Date & Time</label>
+                <input
+                    type="text"
+                    placeholder="FRI"
+                    className="border-4 border-azure-black"
+                    name="day"
+                    value={ticket.day}
+                    onChange={handleChange}
+                />
+                <input
+                    type="text"
+                    placeholder="SEP 15"
+                    className="border-4 border-azure-black"
+                    name="month"
+                    value={ticket.month}
+                    onChange={handleChange}
+                />
+                <input
+                    type="text"
+                    placeholder="5:00 PM"
+                    className="border-4 border-azure-black"
+                    name="time"
+                    value={ticket.time}
+                    onChange={handleChange}
+                />
+            </div>
+
+            <div className="text-2xl py-3 px-2">
+                <label>Ticket Venue</label>
+                <input
+                    type="text"
+                    placeholder="venue and city"
+                    className="border-4 border-azure-black"
+                    name="venue"
+                    value={ticket.venue}
+                    onChange={handleChange}
+                />
+            </div>
+
+            <div className="text-2xl py-3 px-2">
+                <label>Sits</label>
+                {Array.from({ length: sitsCount }).map((_, index) => (
+                    <input
+                        key={index}
+                        type="text"
+                        placeholder="SECTION LAWN 15"
+                        className="border-4 border-azure-black mb-2"
+                        name={`sits[${index}]`}
+                        value={ticket.sits[index] || ''}
+                        onChange={handleChange}
+                    />
+                ))}
+                <button
+                    type="button"
+                    onClick={addSitField}
+                    className="mt-2 px-4 py-2 bg-blue-500 text-white rounded"
+                >
+                    Add Sit
+                </button>
+            </div>
+
+            <div className="text-2xl py-3 px-2">
+                <label>Ticket Category</label>
+                <input
+                    type="text"
+                    placeholder="General Admission"
+                    className="border-4 border-azure-black"
+                    name="category"
+                    value={ticket.category}
+                    onChange={handleChange}
+                />
+            </div>
+
+            <button className="bg-red-500 text-white py-2 px-4 rounded">Submit</button>
+        </form>

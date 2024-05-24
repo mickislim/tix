@@ -1,0 +1,117 @@
+import React, { useEffect, useState } from 'react'
+import locationIcon from '../assets/pin.png'
+import calendarIcon from '../assets/calendar.png'
+import eventImage from '../assets/WhatsApp Image 2024-05-17 at 12.17.08 PM.jpeg'
+import checkMarkIcon from '../assets/checkmark.png'
+import detailsIcon from '../assets/see -details.png'
+import { Link } from 'react-router-dom'
+import axios from 'axios'
+
+const TicketOrder = () => {
+const {tickets,setTickets} = useState([])
+
+
+  
+const url = "http://localhost:3500/api/ticket"
+
+const fetchData =async()=>{
+  try {
+    const  resp = await fetch(url)
+    const data = await resp.json()
+    setTickets(data)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+useEffect(()=>{
+    fetchData()
+},[])
+
+
+
+
+  return (
+    <div>
+   
+   <div className="mx-10 my-4">
+    <ul className="flex flex-row space-x-1 font-semibold text-black/60">
+        <li className="">My Account</li> 
+        <li className="font-extrabold"> </li>
+        <li >My Events</li>
+    </ul>
+</div>
+
+<div className="flex flex-row justify-between item-center mx-10 my-10">
+    <header className="text-3xl font-bold ">My Events</header>
+<button type="button" className="flex items-center  mx-12 text-tm-green font-bold">View my listings <img src={detailsIcon} alt='details-icon' className="h-4 ml-1"/></button>
+</div>
+
+<div className="flex justify-start items-center mx-10 my-5">
+    
+    <ul className="flex space-x-4 font-bold border-b-zinc-600">
+        <li className="border-b-8">
+            Upcoming
+        </li>
+
+        <li className="text-black/40">Past Events</li>
+    </ul>
+    
+
+
+</div>
+{tickets.map((ticket,index)=>{
+    
+        
+             <div key={index}  className="flex mx-10 justify-start items-start">
+ 
+ <div id="event-img" className="w-4/12"  >
+     <img src={ticket.img} alt='event-image' className="h-80" />
+ </div>
+
+
+ <div id="event-details" className="flex justify-between items-center w-8/12 font-bold text-azure-black">
+     <div  className="flex flex-col mx-4 my-6  ">
+         <h1 className="text-3xl my-3">Ian Munsick Tickets</h1>
+ 
+         <div className="flex text-1.5xl  text-center items-start justify-start my-3">
+          <div className="">
+             <img src={calendarIcon} alt='calendar-icon' className="h-5"/>
+          </div>   
+             
+             <ul className="flex text-2l ml-1 " >
+                 <li>Fri, May 17</li> 
+                 <li>8:00 PM</li>
+             </ul>
+ 
+         </div>
+ 
+ <div className="flex  text-center items-start justify-start my-3">
+     <div><img src={locationIcon} alt='location-icon' className="h-5"/></div>
+     <p className="text-1.5xl ml-1 ">Wichita, KS Wave</p>
+ </div>
+ 
+ <div>
+     <button className="flex text-white text-xs bold bg-azure-deepblue p-2  "><img src={checkMarkIcon} alt='checkmark-icon' className="h-3 mr-1" /> View In Wallet </button>
+ </div>
+ 
+     </div>
+
+     <div className="mx-12 text-center border-azure-deepblue border-2 px-4 py-2" >
+         {/* <a href="/" className="text-azure-deepblue font-bold text-xs">See Details</a>  */}
+     <Link to='/ticket/details' className="text-azure-deepblue font-bold text-xs">See Details</Link></div>
+ </div>
+
+</div> 
+        
+    
+  
+    })}
+
+
+
+    </div>
+  )
+}
+
+export default TicketOrder
