@@ -58,7 +58,7 @@ const TicketPage = () => {
                         </div>
                         <div id="venue" className="flex flex-col items-start w-5/8">
                             <h1 className="text-start text-2xl my-3 font-bold">{ticket.name}</h1>
-                            <h1 className="text-xs font-semibold text-azure-black">{ticket.time} - {ticket.venue}</h1>
+                            <h1 className="text-xs font-semibold text-azure-black">{ticket.time} • {ticket.venue}</h1>
                         </div>
                     </div>
                     <div id="notify" className="flex justify-between">
@@ -76,7 +76,7 @@ const TicketPage = () => {
                     <div id="download" className="flex bg-orange-50 py-4 px-5">
                         <div>
                             <h1 className="text-blue-950 font-bold">How to get into the event <a href="/" className="text-azure-deepblue">More Details</a></h1>
-                            <h1 className="py-5 font-semibold text-azure-black">With this order, pick the ticket delivery option that works for you * print-at-home or go mobile</h1>
+                            <h1 className="py-5 font-semibold text-azure-black">With this order, pick the ticket delivery option that works for you • print-at-home or go mobile</h1>
                         </div>
                         <div className="flex item-center justify-center border-red-500 border-2 p-3 m-auto">
                             <button type="button" className="bg-tm-green text-azure-white bg-azure-lightblue h-8 px-6 font-bold hover:bg-azure-deepblue text-start text-nowrap">PRINT TICKETS</button>

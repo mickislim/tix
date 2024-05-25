@@ -59,7 +59,7 @@ const MyTicketsHome = () => {
 </div>
 
 <div>{tickets.map((ticket,index)=>(
-    <div key={ticket._id} className="flex mx-10  my-5 justify-start items-start ">
+    <div key={ticket._id} className="flex mx-10  my-5 justify-start items-start hover:bg-blue-200 shadow-md ">
  <div id="event-img" className="w-4/12"  >
         <img src={ticket.imageURL} alt='ticket-img' className="h-80" />
     </div>
@@ -74,9 +74,8 @@ const MyTicketsHome = () => {
                 <img src={calendar}  alt="calendar" className="h-5"/>
              </div>   
                 
-                <ul className="flex text-2l ml-1 " >
-                    <li>{ticket.day}, {ticket.month} </li> 
-                    <li>{ticket.time}</li>
+                <ul className="flex text-2l ml-1  space-x-1" >
+                    <li>{ticket.day} • {ticket.month}</li> • <li>{ticket.time}</li>
                 </ul>
     
             </div>
